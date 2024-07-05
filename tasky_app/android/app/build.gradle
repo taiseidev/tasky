@@ -27,6 +27,26 @@ android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
+    flavorDimensions "default"
+
+    productFlavors {
+        dev {
+            dimension "default"
+            resValue "string", "app_name", "DevTasky"
+            applicationIdSuffix ".dev"
+        }
+        stg {
+            dimension "default"
+            resValue "string", "app_name", "StgTasky"
+            applicationIdSuffix ".stg"
+        }
+        prod {
+            dimension "default"
+            resValue "string", "app_name", "ProdTasky"
+            applicationIdSuffix ""
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -42,7 +62,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.tasky_app"
+        applicationId "com.ot.tasky.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
