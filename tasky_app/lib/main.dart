@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'config/config.dart';
+
 void main() {
+  final config = Config.current;
+  debugPrint(config.baseUrl);
   runApp(const MyApp());
 }
 
