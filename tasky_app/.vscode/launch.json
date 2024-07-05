@@ -1,0 +1,32 @@
+{
+                    "version": "0.2.0",
+                    "configurations": [
+                                        {
+                                                            "name": "Run dev",
+                                                            "request": "launch",
+                                                            "type": "dart",
+                                                            "args": [
+                                                                                "--flavor",
+                                                                                "dev",
+                                                            ]
+                                        },
+                                        {
+                                                            "name": "Run stg",
+                                                            "request": "launch",
+                                                            "type": "dart",
+                                                            "args": [
+                                                                                "--flavor",
+                                                                                "stg",
+                                                            ]
+                                        },
+                                        {
+                                                            "name": "Run prod",
+                                                            "request": "launch",
+                                                            "type": "dart",
+                                                            "args": [
+                                                                                "--flavor",
+                                                                                "prod",
+                                                            ]
+                                        }
+                    ]
+}
