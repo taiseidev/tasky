@@ -369,7 +369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -594,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.stg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = StgTasky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -692,7 +692,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = Tasky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -879,7 +879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.stg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = StgTasky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -971,7 +971,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = Tasky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1151,7 +1151,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.stg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = StgTasky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1241,7 +1241,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = Tasky;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1388,7 +1388,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1414,7 +1414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onishi.taisei.tasky.app.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
