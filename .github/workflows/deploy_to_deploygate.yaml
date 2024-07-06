@@ -23,15 +23,9 @@ jobs:
         with:
           flutter-version: "3.22.1"
 
-      - name: Show current directory after Flutter setup
-        run: pwd
-
-      - name: List files after Flutter setup
-        run: ls -al
-
       - name: flutter dependencies install
         run: |
-          cd TASKY/tasky_app
+          cd tasky_app
           flutter pub get
 
       - name: Import Provisioning Profile
@@ -49,7 +43,7 @@ jobs:
         run: echo -n '${{ secrets.EXPORT_OPTIONS }}' >> ExportOptions.plist
 
       - run: |
-          cd tasky/tasky_app
+          cd tasky_app
           flutter build ipa --export-options-plist=ExportOptions.plist
 
       - name: Distribute iOS app
