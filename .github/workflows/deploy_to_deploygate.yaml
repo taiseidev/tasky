@@ -12,6 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Select Xcode version 13.1
+        run: |
+          cd tasky_app
+          sudo xcode-select -s '/Applications/Xcode_13.1.app/Contents/Developer'
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
       - name: setup cache
         uses: actions/cache@v1
         with:
