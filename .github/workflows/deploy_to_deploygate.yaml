@@ -25,6 +25,8 @@ jobs:
 
       - name: flutter dependencies install
         run: |
+          pwd
+          ls
           cd tasky/tasky_app
           flutter pub get
 
