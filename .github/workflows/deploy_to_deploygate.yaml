@@ -23,11 +23,15 @@ jobs:
         with:
           flutter-version: "3.22.1"
 
+      - name: Show current directory after Flutter setup
+        run: pwd
+
+      - name: List files after Flutter setup
+        run: ls -al
+
       - name: flutter dependencies install
         run: |
-          pwd
-          ls
-          cd tasky/tasky_app
+          cd TASKY/tasky_app
           flutter pub get
 
       - name: Import Provisioning Profile
