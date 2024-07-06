@@ -25,6 +25,7 @@ jobs:
           channel: "stable"
 
       - name: flutter dependencies install
+        working-directory: ./path/to/flutter_project
         run: flutter pub get
 
       - name: Import Provisioning Profile
