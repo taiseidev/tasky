@@ -25,7 +25,7 @@ jobs:
 
       - name: flutter dependencies install
         run: |
-          cd Tasky/tasky_app
+          cd tasky/tasky_app
           flutter pub get
 
       - name: Import Provisioning Profile
@@ -43,7 +43,7 @@ jobs:
         run: echo -n '${{ secrets.EXPORT_OPTIONS }}' >> ExportOptions.plist
 
       - run: |
-          cd Tasky/tasky_app
+          cd tasky/tasky_app
           flutter build ipa --export-options-plist=ExportOptions.plist
 
       - name: Distribute iOS app
