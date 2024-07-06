@@ -23,8 +23,8 @@ jobs:
         with:
           flutter-version: "3.22.1"
 
-      - name: flutter dependencies install
-        run: flutter pub get
+      # - name: flutter dependencies install
+      #   run: flutter pub get
 
       - name: Import Provisioning Profile
         run: |
