@@ -9,6 +9,9 @@ class Config {
 
     // TODO(onishi): baseUrlは仮なので適切なものに差し替える
     return switch (flavor) {
+      'local' => Config(
+          baseUrl: 'http://localhost:8080',
+        ),
       'dev' => Config(
           baseUrl: 'https://dev.api.example.com',
         ),
