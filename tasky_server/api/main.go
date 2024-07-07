@@ -7,10 +7,8 @@ import (
 )
 
 func main() {
-	// Initialize Echo
 	e := echo.New()
 
-	// Initialize database
 	db := config.InitDB()
 
 	// Initialize user controller

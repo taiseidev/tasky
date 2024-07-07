@@ -1,11 +1,30 @@
-version: "3"
+version: "3.8"
+
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    volumes:
-      - .:/app
+    depends_on:
+      - db
     environment:
-      - GO111MODULE=on
-    command: go run ./api/main.go
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root_password
+      - DB_NAME=taskydb
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: taskydb
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

@@ -15,7 +15,8 @@ func NewUserRepository(db *sql.DB) *UserRepository {
 }
 
 func (r *UserRepository) Create(user *models.User) error {
-	_, err := r.DB.Exec("INSERT INTO users (name, email) VALUES (?, ?)", user.Name, user.Email)
+	query := "INSERT INTO users (name, email, password) VALUES (?, ?, ?)"
+	_, err := r.DB.Exec(query, user.Name, user.Email, user.Password)
 	return err
 }
 
@@ -30,11 +31,13 @@ func (r *UserRepository) GetByID(id int) (*models.User, error) {
 }
 
 func (r *UserRepository) Update(user *models.User) error {
-	_, err := r.DB.Exec("UPDATE users SET name = ?, email = ? WHERE id = ?", user.Name, user.Email, user.ID)
+	query := "UPDATE users SET name = ?, email = ? WHERE id = ?"
+	_, err := r.DB.Exec(query, user.Name, user.Email, user.ID)
 	return err
 }
 
 func (r *UserRepository) Delete(id int) error {
-	_, err := r.DB.Exec("DELETE FROM users WHERE id = ?", id)
+	query := "DELETE FROM users WHERE id = ?"
+	_, err := r.DB.Exec(query, id)
 	return err
 }
