@@ -20,8 +20,6 @@
                                                                                 "--flavor",
                                                                                 "dev",
                                                             ],
-                                                            // "preLaunchTask": "Docker Compose Up",
-                                                            // "postDebugTask": "Docker Compose Down"
                                         },
                                         {
                                                             "name": "Run stg",
