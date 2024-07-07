@@ -1,15 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"github.com/labstack/echo/v4"
+	"github.com/taiseidev/tasky/tasky_server/config"
+	"github.com/taiseidev/tasky/tasky_server/controllers"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, Docker!")
-	})
+	// Initialize Echo
+	e := echo.New()
 
-	fmt.Println("Server starting on port 8080...")
-	http.ListenAndServe(":8080", nil)
+	// Initialize database
+	db := config.InitDB()
+
+	// Initialize user controller
+	userController := controllers.NewUserController(db)
+
+	// Define routes
+	e.POST("/users", userController.CreateUser)
+	e.GET("/users/:id", userController.GetUser)
+	e.PUT("/users/:id", userController.UpdateUser)
+	e.DELETE("/users/:id", userController.DeleteUser)
+
+	// Start server
+	e.Start(":8080")
 }
