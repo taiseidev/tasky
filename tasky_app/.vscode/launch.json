@@ -2,13 +2,23 @@
                     "version": "0.2.0",
                     "configurations": [
                                         {
+                                                            "name": "Run local",
+                                                            "request": "launch",
+                                                            "type": "dart",
+                                                            "args": [
+                                                                                "--flavor",
+                                                                                "local",
+                                                            ],
+                                                            "preLaunchTask": "Docker Compose Up"
+                                        },
+                                        {
                                                             "name": "Run dev",
                                                             "request": "launch",
                                                             "type": "dart",
                                                             "args": [
                                                                                 "--flavor",
                                                                                 "dev",
-                                                            ]
+                                                            ],
                                         },
                                         {
                                                             "name": "Run stg",
@@ -17,7 +27,7 @@
                                                             "args": [
                                                                                 "--flavor",
                                                                                 "stg",
-                                                            ]
+                                                            ],
                                         },
                                         {
                                                             "name": "Run prod",
@@ -26,7 +36,7 @@
                                                             "args": [
                                                                                 "--flavor",
                                                                                 "prod",
-                                                            ]
+                                                            ],
                                         }
                     ]
 }
