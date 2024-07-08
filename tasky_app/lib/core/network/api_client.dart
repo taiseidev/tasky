@@ -19,4 +19,7 @@ abstract class ApiClient {
 
   @POST(Endpoints.createUser)
   Future<UserModel> createUser(@Body() UserModel user);
+
+  @GET(Endpoints.fetchUserById)
+  Future<UserModel> fetchUserById(@Path('id') String userId);
 }
