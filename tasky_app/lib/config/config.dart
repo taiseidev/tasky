@@ -1,10 +1,7 @@
 class Config {
   Config({required this.baseUrl});
 
-  final String baseUrl;
-  static const String _kAppFlavorKey = 'FLUTTER_APP_FLAVOR';
-
-  static Config get current {
+  factory Config.current() {
     const flavor = String.fromEnvironment(_kAppFlavorKey);
 
     // TODO(onishi): baseUrlは仮なので適切なものに差し替える
@@ -24,4 +21,7 @@ class Config {
       _ => Config(baseUrl: ''),
     };
   }
+
+  final String baseUrl;
+  static const String _kAppFlavorKey = 'FLUTTER_APP_FLAVOR';
 }

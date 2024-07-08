@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tasky_app/core/extensions/widget_ref_extension.dart';
 import 'package:tasky_app/core/utils/result.dart';
+import 'package:tasky_app/features/user/domain/entities/user.dart';
+import 'package:tasky_app/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:tasky_app/features/user/domain/usecases/fetch_user_by_id_usecase.dart';
 import 'package:tasky_app/features/user/domain/value_objects/user_id.dart';
-
-import '../../features/user/domain/entities/user.dart';
-import '../../features/user/domain/usecases/create_user_usecase.dart';
 
 class UserPage extends ConsumerWidget {
   const UserPage({super.key});
@@ -21,12 +20,12 @@ class UserPage extends ConsumerWidget {
       complete: (context, data) {
         if (data is Success) {
           debugPrint('成功しました');
-          debugPrint((data as Success).message);
+          debugPrint((data! as Success).message);
         }
 
         if (data is Failure) {
           debugPrint('失敗しました');
-          debugPrint((data as Failure).message);
+          debugPrint((data! as Failure).message);
         }
       },
     );
@@ -61,9 +60,9 @@ class UserPage extends ConsumerWidget {
               onPressed: () async {
                 const user = User(
                   id: 8,
-                  name: "山本浩也",
-                  email: "taisei.developer5@gmail.com",
-                  password: "password123",
+                  name: '山本浩也',
+                  email: 'taisei.developer5@gmail.com',
+                  password: 'password123',
                 );
 
                 await ref.read(createUserUsecaseProvider.notifier).call(user);

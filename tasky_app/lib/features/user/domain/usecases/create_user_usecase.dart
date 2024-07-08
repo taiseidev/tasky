@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tasky_app/core/utils/result.dart';
 import 'package:tasky_app/features/user/data/repositories/user_repository_provider.dart';
-import '../entities/user.dart';
+import 'package:tasky_app/features/user/domain/entities/user.dart';
 
 part 'create_user_usecase.g.dart';
 
