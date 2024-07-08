@@ -8,7 +8,7 @@ part 'create_user_usecase.g.dart';
 @riverpod
 class CreateUserUsecase extends _$CreateUserUsecase {
   @override
-  Future<Result<User>>? build() => null;
+  Future<Result<User>?>? build() => null;
 
   Future<void> call(User user) async {
     state = const AsyncLoading();

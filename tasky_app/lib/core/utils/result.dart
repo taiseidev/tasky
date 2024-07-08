@@ -1,31 +1,33 @@
 import 'package:dio/dio.dart';
 
 sealed class Result<T> {
-  const Result();
-}
-
-final class Success<T> extends Result<T> {
-  const Success(
-    this.value, {
+  const Result({
+    this.value,
     this.statusCode,
     this.message,
   });
 
-  final T value;
+  final T? value;
   final int? statusCode;
   final String? message;
+}
+
+final class Success<T> extends Result<T> {
+  const Success(T? value) : super(value: value);
 }
 
 final class Failure<T> extends Result<T> {
   const Failure(
     this.exception, {
-    this.statusCode,
-    this.message,
-  });
+    int? statusCode,
+    String? message,
+  }) : super(
+          statusCode: statusCode,
+          message: message,
+          value: null,
+        );
 
   final Exception exception;
-  final int? statusCode;
-  final String? message;
 }
 
 abstract class ApiResultHandler<T> {
@@ -35,19 +37,17 @@ abstract class ApiResultHandler<T> {
     try {
       final result = await operation();
       return Success(result);
-    } catch (e) {
-      if (e is DioException) {
-        throw Failure(
-          e,
-          statusCode: e.response?.statusCode,
-          message: e.response?.data['message'] ?? e.message,
-        );
-      } else {
-        throw Failure(
-          Exception('Unexpected error'),
-          message: e.toString(),
-        );
-      }
+    } on DioException catch (e) {
+      return Failure(
+        e,
+        statusCode: e.response?.statusCode,
+        message: e.response?.data['message'] ?? e.message,
+      );
+    } on Exception catch (e) {
+      return Failure(
+        Exception('Unexpected error'),
+        message: e.toString(),
+      );
     }
   }
 }
