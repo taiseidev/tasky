@@ -19,11 +19,9 @@ final class Success<T> extends Result<T> {
 final class Failure<T> extends Result<T> {
   const Failure(
     this.exception, {
-    int? statusCode,
-    String? message,
+    super.statusCode,
+    super.message,
   }) : super(
-          statusCode: statusCode,
-          message: message,
           value: null,
         );
 
@@ -38,10 +36,15 @@ abstract class ApiResultHandler<T> {
       final result = await operation();
       return Success(result);
     } on DioException catch (e) {
+      String? errorMessage;
+      if (e.response?.data is Map<String, dynamic>) {
+        errorMessage =
+            (e.response?.data as Map<String, dynamic>)['message'] as String?;
+      }
       return Failure(
         e,
         statusCode: e.response?.statusCode,
-        message: e.response?.data['message'] ?? e.message,
+        message: errorMessage ?? e.message,
       );
     } on Exception catch (e) {
       return Failure(

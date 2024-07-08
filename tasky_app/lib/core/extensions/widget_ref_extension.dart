@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tasky_app/core/providers/loading.dart';
+import 'package:tasky_app/core/providers/navigator_key.dart';
+import 'package:tasky_app/core/providers/scaffold_messenger_key.dart';
 import 'package:tasky_app/core/utils/result.dart';
-
-import '../providers/loading.dart';
-import '../providers/navigator_key.dart';
-import '../providers/scaffold_messenger_key.dart';
 
 extension WidgetRefEx on WidgetRef {
   void handleAsyncValue<T>(

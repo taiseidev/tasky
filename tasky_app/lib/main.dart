@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'app.dart';
+import 'package:tasky_app/app.dart';
 
 void main() {
   runApp(

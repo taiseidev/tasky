@@ -8,7 +8,7 @@ part 'dio.g.dart';
 Dio dio(DioRef ref) {
   final dio = Dio();
 
-  dio.options.baseUrl = Config.current.baseUrl;
+  dio.options.baseUrl = Config.current().baseUrl;
   dio.options.headers = {
     'Content-Type': 'application/json',
   };

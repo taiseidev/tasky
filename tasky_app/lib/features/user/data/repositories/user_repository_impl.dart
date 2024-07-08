@@ -1,8 +1,8 @@
-import '../../../../core/network/api_client.dart';
-import '../../../../core/utils/result.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/repositories/user_repository.dart';
-import '../models/user_model.dart';
+import 'package:tasky_app/core/network/api_client.dart';
+import 'package:tasky_app/core/utils/result.dart';
+import 'package:tasky_app/features/user/data/models/user_model.dart';
+import 'package:tasky_app/features/user/domain/entities/user.dart';
+import 'package:tasky_app/features/user/domain/repositories/user_repository.dart';
 import 'package:tasky_app/features/user/domain/value_objects/user_id.dart';
 
 class UserRepositoryImpl extends UserRepository {
@@ -18,7 +18,7 @@ class UserRepositoryImpl extends UserRepository {
       password: user.password,
     );
 
-    return await ApiResultHandler.guard<User>(() async {
+    return ApiResultHandler.guard<User>(() async {
       await apiClient.createUser(userModel);
       return user;
     });
@@ -26,7 +26,7 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<Result<User>> fetchUserById(UserId userId) async {
-    return await ApiResultHandler.guard<User>(() async {
+    return ApiResultHandler.guard<User>(() async {
       final userModel = await apiClient.fetchUserById(userId.value);
       return User(
         id: userModel.id,

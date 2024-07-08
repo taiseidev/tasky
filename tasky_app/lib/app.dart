@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'core/providers/loading.dart';
-import 'core/providers/navigator_key.dart';
-import 'core/providers/scaffold_messenger_key.dart';
-import 'ui/pages/user_page.dart';
+import 'package:tasky_app/core/providers/loading.dart';
+import 'package:tasky_app/core/providers/navigator_key.dart';
+import 'package:tasky_app/core/providers/scaffold_messenger_key.dart';
+import 'package:tasky_app/ui/pages/user_page.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
