@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class Config {
   Config({required this.baseUrl});
 
@@ -7,19 +9,29 @@ class Config {
     // TODO(onishi): baseUrlは仮なので適切なものに差し替える
     return switch (flavor) {
       'local' => Config(
-          baseUrl: 'http://localhost:8080',
+          baseUrl: 'http://${getLocalhost()}:8080',
         ),
       'dev' => Config(
-          baseUrl: 'https://dev.api.example.com',
+          baseUrl: 'http://dev.api.example.com',
         ),
       'stg' => Config(
-          baseUrl: 'https://stg.api.example.com',
+          baseUrl: 'http://stg.api.example.com',
         ),
       'prod' => Config(
-          baseUrl: 'https://prod.api.example.com',
+          baseUrl: 'http://prod.api.example.com',
         ),
       _ => Config(baseUrl: ''),
     };
+  }
+
+  static String getLocalhost() {
+    if (Platform.isAndroid) {
+      return '10.0.2.2';
+    }
+    if (Platform.isIOS) {
+      return 'localhost';
+    }
+    return '';
   }
 
   final String baseUrl;

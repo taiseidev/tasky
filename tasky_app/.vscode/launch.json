@@ -7,7 +7,7 @@
                                                             "type": "dart",
                                                             "args": [
                                                                                 "--flavor",
-                                                                                "local",
+                                                                                "local"
                                                             ],
                                                             "preLaunchTask": "Docker Compose Up",
                                                             "postDebugTask": "Docker Compose Down"
@@ -18,8 +18,8 @@
                                                             "type": "dart",
                                                             "args": [
                                                                                 "--flavor",
-                                                                                "dev",
-                                                            ],
+                                                                                "dev"
+                                                            ]
                                         },
                                         {
                                                             "name": "Run stg",
@@ -27,8 +27,8 @@
                                                             "type": "dart",
                                                             "args": [
                                                                                 "--flavor",
-                                                                                "stg",
-                                                            ],
+                                                                                "stg"
+                                                            ]
                                         },
                                         {
                                                             "name": "Run prod",
@@ -36,8 +36,8 @@
                                                             "type": "dart",
                                                             "args": [
                                                                                 "--flavor",
-                                                                                "prod",
-                                                            ],
+                                                                                "prod"
+                                                            ]
                                         }
                     ]
 }

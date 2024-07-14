@@ -4,19 +4,25 @@
                                         {
                                                             "label": "Docker Compose Up",
                                                             "type": "shell",
-                                                            "command": "docker-compose up -d",
+                                                            "command": "make",
+                                                            "args": [
+                                                                                "up"
+                                                            ],
                                                             "problemMatcher": [],
                                                             "options": {
-                                                                                "cwd": "${workspaceFolder}/../tasky_server"
+                                                                                "cwd": "${workspaceFolder}"
                                                             }
                                         },
                                         {
                                                             "label": "Docker Compose Down",
                                                             "type": "shell",
-                                                            "command": "docker-compose down",
+                                                            "command": "make",
+                                                            "args": [
+                                                                                "down"
+                                                            ],
                                                             "problemMatcher": [],
                                                             "options": {
-                                                                                "cwd": "${workspaceFolder}/../tasky_server"
+                                                                                "cwd": "${workspaceFolder}"
                                                             }
                                         }
                     ]
