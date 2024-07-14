@@ -30,6 +30,11 @@ android {
     flavorDimensions "default"
 
     productFlavors {
+        local {
+            dimension "default"
+            resValue "string", "app_name", "LocalTasky"
+            applicationIdSuffix ".local"
+        }
         dev {
             dimension "default"
             resValue "string", "app_name", "DevTasky"

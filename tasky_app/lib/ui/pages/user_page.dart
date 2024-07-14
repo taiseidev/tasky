@@ -39,10 +39,14 @@ class UserPage extends ConsumerWidget {
             user1.when(
               data: (data) {
                 final user = data.value;
+
+                if (user == null) {
+                  return const SizedBox.shrink();
+                }
+
                 return Column(
                   children: [
-                    Text(user?.name ?? 'テストユーザー'),
-                    Text(data.statusCode?.toString() ?? 200.toString()),
+                    Text(user.name),
                   ],
                 );
               },
