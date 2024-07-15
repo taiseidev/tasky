@@ -1,3 +1,5 @@
+// ignore_for_file: only_throw_errors
+
 import 'package:dio/dio.dart';
 
 sealed class Result<T> {
@@ -37,17 +39,22 @@ abstract class ApiResultHandler<T> {
       return Success(result);
     } on DioException catch (e) {
       String? errorMessage;
+      print('DioError: ${e.message}');
+      print('Request: ${e.requestOptions}');
+      print('Response data: ${e.response?.data}');
+      print('Response status: ${e.response?.statusCode}');
+      print('Response headers: ${e.response?.headers}');
       if (e.response?.data is Map<String, dynamic>) {
         errorMessage =
             (e.response?.data as Map<String, dynamic>)['message'] as String?;
       }
-      return Failure(
+      throw Failure(
         e,
         statusCode: e.response?.statusCode,
         message: errorMessage ?? e.message,
       );
     } on Exception catch (e) {
-      return Failure(
+      throw Failure(
         Exception('Unexpected error'),
         message: e.toString(),
       );

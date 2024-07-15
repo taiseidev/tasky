@@ -5,6 +5,7 @@ import 'package:tasky_app/core/utils/result.dart';
 import 'package:tasky_app/features/user/domain/entities/user.dart';
 import 'package:tasky_app/features/user/domain/usecases/create_user_usecase.dart';
 import 'package:tasky_app/features/user/domain/usecases/fetch_user_by_id_usecase.dart';
+import 'package:tasky_app/features/user/domain/usecases/update_user_usecase.dart';
 import 'package:tasky_app/features/user/domain/value_objects/user_id.dart';
 
 class UserPage extends ConsumerWidget {
@@ -16,16 +17,10 @@ class UserPage extends ConsumerWidget {
 
     ref.handleAsyncValue(
       createUserUsecaseProvider,
-      completeMessage: 'ユーザの保存が完了しました。',
       complete: (context, data) {
         if (data is Success) {
           debugPrint('成功しました');
           debugPrint((data! as Success).message);
-        }
-
-        if (data is Failure) {
-          debugPrint('失敗しました');
-          debugPrint((data! as Failure).message);
         }
       },
     );
@@ -46,7 +41,7 @@ class UserPage extends ConsumerWidget {
 
                 return Column(
                   children: [
-                    Text(user.name),
+                    Text(user.name ?? ''),
                   ],
                 );
               },
@@ -63,13 +58,26 @@ class UserPage extends ConsumerWidget {
               child: const Text('Create User'),
               onPressed: () async {
                 const user = User(
-                  id: 8,
-                  name: '山本浩也',
-                  email: 'taisei.developer5@gmail.com',
+                  name: '金沢大樹',
+                  email: 'test1@gmail.com',
                   password: 'password123',
                 );
 
                 await ref.read(createUserUsecaseProvider.notifier).call(user);
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Update User'),
+              onPressed: () async {
+                const user = User(
+                  name: '柴田雄介',
+                  email: 'taisei.devel@gmail.com',
+                  password: 'password123',
+                );
+
+                await ref
+                    .read(updateUserUsecaseProvider.notifier)
+                    .call(UserId('1'), user);
               },
             ),
           ],
