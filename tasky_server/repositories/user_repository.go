@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"database/sql"
+	"time"
 
 	"github.com/taiseidev/tasky/tasky_server/models"
 )
@@ -31,8 +32,9 @@ func (r *UserRepository) GetByID(id int) (*models.User, error) {
 }
 
 func (r *UserRepository) Update(user *models.User) error {
-	query := "UPDATE users SET name = ?, email = ? WHERE id = ?"
-	_, err := r.DB.Exec(query, user.Name, user.Email, user.ID)
+	user.UpdatedAt = time.Now()
+	query := "UPDATE users SET name = ?, email = ?, updated_at = ? WHERE id = ?"
+	_, err := r.DB.Exec(query, user.Name, user.Email, user.UpdatedAt, user.ID)
 	return err
 }
 

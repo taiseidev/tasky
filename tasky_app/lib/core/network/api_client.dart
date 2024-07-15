@@ -21,4 +21,10 @@ abstract class ApiClient {
 
   @GET(Endpoints.fetchUserById)
   Future<UserModel> fetchUserById(@Path('id') String userId);
+
+  @PUT(Endpoints.updateUser)
+  Future<UserModel> updateUser(
+    @Path('id') String userId,
+    @Body() UserModel user,
+  );
 }

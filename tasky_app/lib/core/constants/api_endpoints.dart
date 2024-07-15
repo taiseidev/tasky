@@ -3,4 +3,5 @@ class Endpoints {
 
   static const String createUser = '/users';
   static const String fetchUserById = '/users/{id}';
+  static const String updateUser = '/users/{id}';
 }

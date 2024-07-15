@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/go-sql-driver/mysql"
 	"github.com/labstack/echo/v4"
 	"github.com/taiseidev/tasky/tasky_server/models"
 	"github.com/taiseidev/tasky/tasky_server/repositories"
@@ -63,8 +64,13 @@ func (c *UserController) UpdateUser(ctx echo.Context) error {
 	}
 	user.ID = id
 	if err := c.Service.UpdateUser(user); err != nil {
-		log.Println("Error updating user:", err)
-		return ctx.JSON(http.StatusInternalServerError, err)
+		if mysqlErr, ok := err.(*mysql.MySQLError); ok && mysqlErr.Number == 1062 {
+			log.Println("Error updating user:", err)
+			ctx.JSON(http.StatusConflict, err)
+		} else {
+			log.Println("Error updating user:", err)
+			ctx.JSON(http.StatusInternalServerError, err)
+		}
 	}
 	return ctx.JSON(http.StatusOK, user)
 }

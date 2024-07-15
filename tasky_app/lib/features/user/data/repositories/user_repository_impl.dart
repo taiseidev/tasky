@@ -36,4 +36,19 @@ class UserRepositoryImpl extends UserRepository {
       );
     });
   }
+
+  @override
+  Future<Result<User>> updateUser(UserId userId, User user) {
+    final userModel = UserModel(
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+    );
+
+    return ApiResultHandler.guard<User>(() async {
+      await apiClient.updateUser(userId.value, userModel);
+      return user;
+    });
+  }
 }
