@@ -27,4 +27,9 @@ abstract class ApiClient {
     @Path('id') String userId,
     @Body() UserModel user,
   );
+
+  @DELETE(Endpoints.deleteUser)
+  Future<void> deleteUser(
+    @Path('id') String userId,
+  );
 }

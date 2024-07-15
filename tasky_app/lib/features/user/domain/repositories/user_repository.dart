@@ -6,4 +6,5 @@ abstract class UserRepository {
   Future<Result<User>> createUser(User user);
   Future<Result<User>> fetchUserById(UserId userId);
   Future<Result<User>> updateUser(UserId userId, User user);
+  Future<Result<void>> deleteUser(UserId userId);
 }

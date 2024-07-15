@@ -51,4 +51,11 @@ class UserRepositoryImpl extends UserRepository {
       return user;
     });
   }
+
+  @override
+  Future<Result<void>> deleteUser(UserId userId) {
+    return ApiResultHandler.guard<void>(() async {
+      await apiClient.deleteUser(userId.value);
+    });
+  }
 }
