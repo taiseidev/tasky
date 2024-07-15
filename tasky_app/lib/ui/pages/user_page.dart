@@ -4,6 +4,7 @@ import 'package:tasky_app/core/extensions/widget_ref_extension.dart';
 import 'package:tasky_app/core/utils/result.dart';
 import 'package:tasky_app/features/user/domain/entities/user.dart';
 import 'package:tasky_app/features/user/domain/usecases/create_user_usecase.dart';
+import 'package:tasky_app/features/user/domain/usecases/delete_user_usecase.dart';
 import 'package:tasky_app/features/user/domain/usecases/fetch_user_by_id_usecase.dart';
 import 'package:tasky_app/features/user/domain/usecases/update_user_usecase.dart';
 import 'package:tasky_app/features/user/domain/value_objects/user_id.dart';
@@ -78,6 +79,14 @@ class UserPage extends ConsumerWidget {
                 await ref
                     .read(updateUserUsecaseProvider.notifier)
                     .call(UserId('1'), user);
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Delete User'),
+              onPressed: () async {
+                await ref
+                    .read(deleteUserUsecaseProvider.notifier)
+                    .call(UserId('47'));
               },
             ),
           ],
