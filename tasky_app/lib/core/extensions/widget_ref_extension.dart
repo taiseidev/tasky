@@ -42,7 +42,8 @@ extension WidgetRefEx on WidgetRef {
               await showDialog<void>(
                 context: read(navigatorKeyProvider).currentContext!,
                 builder: (context) => AlertDialog(
-                  title: Text((e as Failure).message ?? ''),
+                  title: Text((e as Failure).title ?? ''),
+                  content: Text(e.message ?? ''),
                 ),
               );
             },

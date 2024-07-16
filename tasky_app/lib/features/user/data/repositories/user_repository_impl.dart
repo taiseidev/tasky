@@ -28,12 +28,7 @@ class UserRepositoryImpl extends UserRepository {
   Future<Result<User>> fetchUserById(UserId userId) async {
     return ApiResultHandler.guard<User>(() async {
       final userModel = await apiClient.fetchUserById(userId.value);
-      return User(
-        id: userModel.id,
-        name: userModel.name,
-        email: userModel.email,
-        password: userModel.password,
-      );
+      return userModel.toUser();
     });
   }
 
