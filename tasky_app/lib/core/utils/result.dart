@@ -22,12 +22,14 @@ final class Failure<T> extends Result<T> {
   const Failure(
     this.exception, {
     super.statusCode,
+    this.title,
     super.message,
   }) : super(
           value: null,
         );
 
   final Exception exception;
+  final String? title;
 }
 
 abstract class ApiResultHandler<T> {
@@ -39,19 +41,20 @@ abstract class ApiResultHandler<T> {
       return Success(result);
     } on DioException catch (e) {
       String? errorMessage;
-      print('DioError: ${e.message}');
-      print('Request: ${e.requestOptions}');
-      print('Response data: ${e.response?.data}');
-      print('Response status: ${e.response?.statusCode}');
-      print('Response headers: ${e.response?.headers}');
+      String? errorTitle;
+
       if (e.response?.data is Map<String, dynamic>) {
         errorMessage =
             (e.response?.data as Map<String, dynamic>)['message'] as String?;
+        errorTitle =
+            (e.response?.data as Map<String, dynamic>)['title'] as String?;
       }
+
       throw Failure(
         e,
         statusCode: e.response?.statusCode,
-        message: errorMessage ?? e.message,
+        message: errorMessage,
+        title: errorTitle,
       );
     } on Exception catch (e) {
       throw Failure(

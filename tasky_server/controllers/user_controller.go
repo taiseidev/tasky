@@ -25,29 +25,66 @@ func NewUserController(db *sql.DB) *UserController {
 
 func (c *UserController) CreateUser(ctx echo.Context) error {
 	user := new(models.User)
+
 	if err := ctx.Bind(user); err != nil {
-		log.Println("Error binding user:", err)
+		log.Println(err)
 		return ctx.JSON(http.StatusBadRequest, err)
 	}
+
 	log.Println("User data:", user)
+
 	if err := c.Service.CreateUser(user); err != nil {
 		log.Println("Error creating user:", err)
-		return ctx.JSON(http.StatusInternalServerError, err)
+		if mysqlErr, ok := err.(*mysql.MySQLError); ok {
+			switch mysqlErr.Number {
+			case 1062:
+				return ctx.JSON(http.StatusConflict, models.ErrorResponse{
+					Title:   "重複エラー",
+					Message: "メールアドレスが重複しています。",
+				})
+			default:
+				return ctx.JSON(http.StatusBadRequest, models.ErrorResponse{
+					Title:   "エラー",
+					Message: "何かしらのエラーが発生しました。",
+				})
+			}
+		}
+		return ctx.JSON(http.StatusBadRequest, models.ErrorResponse{
+			Title:   "エラー",
+			Message: "何かしらのエラーが発生しました。",
+		})
 	}
+
 	return ctx.JSON(http.StatusCreated, user)
 }
 
 func (c *UserController) GetUser(ctx echo.Context) error {
 	id, err := strconv.Atoi(ctx.Param("id"))
+
 	if err != nil {
-		log.Println("Error converting id:", err)
-		return ctx.JSON(http.StatusBadRequest, err)
+		log.Println(err)
+		return ctx.JSON(http.StatusBadRequest, models.ErrorResponse{
+			Title:   "Invalid ID",
+			Message: "The provided user ID is invalid",
+		})
 	}
+
 	user, err := c.Service.GetUser(id)
+
 	if err != nil {
-		log.Println("Error getting user:", err)
-		return ctx.JSON(http.StatusNotFound, err)
+		log.Println(err)
+		if err == sql.ErrNoRows {
+			return ctx.JSON(http.StatusNotFound, models.ErrorResponse{
+				Title:   "エラー",
+				Message: "ユーザが見つかりませんでした。",
+			})
+		}
+		return ctx.JSON(http.StatusInternalServerError, models.ErrorResponse{
+			Title:   "エラー",
+			Message: "何かしらのエラーが発生しました。",
+		})
 	}
+
 	return ctx.JSON(http.StatusOK, user)
 }
 
@@ -64,13 +101,24 @@ func (c *UserController) UpdateUser(ctx echo.Context) error {
 	}
 	user.ID = id
 	if err := c.Service.UpdateUser(user); err != nil {
-		if mysqlErr, ok := err.(*mysql.MySQLError); ok && mysqlErr.Number == 1062 {
-			log.Println("Error updating user:", err)
-			ctx.JSON(http.StatusConflict, err)
-		} else {
-			log.Println("Error updating user:", err)
-			ctx.JSON(http.StatusInternalServerError, err)
+		if mysqlErr, ok := err.(*mysql.MySQLError); ok {
+			switch mysqlErr.Number {
+			case 1062:
+				return ctx.JSON(http.StatusConflict, models.ErrorResponse{
+					Title:   "重複エラー",
+					Message: "メールアドレスが重複しています。",
+				})
+			default:
+				return ctx.JSON(http.StatusBadRequest, models.ErrorResponse{
+					Title:   "エラー",
+					Message: "何かしらのエラーが発生しました。",
+				})
+			}
 		}
+		return ctx.JSON(http.StatusBadRequest, models.ErrorResponse{
+			Title:   "エラー",
+			Message: "何かしらのエラーが発生しました。",
+		})
 	}
 	return ctx.JSON(http.StatusOK, user)
 }
@@ -82,8 +130,18 @@ func (c *UserController) DeleteUser(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, err)
 	}
 	if err := c.Service.DeleteUser(id); err != nil {
-		log.Println("Error deleting user:", err)
-		return ctx.JSON(http.StatusInternalServerError, err)
+		log.Println(err)
+		if err == sql.ErrNoRows {
+			return ctx.JSON(http.StatusNotFound, models.ErrorResponse{
+				Title:   "エラー",
+				Message: "ユーザが見つかりませんでした。",
+			})
+		}
+		return ctx.JSON(http.StatusInternalServerError, models.ErrorResponse{
+			Title:   "エラー",
+			Message: "何かしらのエラーが発生しました。",
+		})
 	}
+
 	return ctx.NoContent(http.StatusNoContent)
 }

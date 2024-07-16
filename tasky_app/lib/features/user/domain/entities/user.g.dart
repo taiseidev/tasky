@@ -6,11 +6,18 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
-      id: (json['id'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      email: json['email'] as String?,
-      password: json['password'] as String?,
+_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => $checkedCreate(
+      r'_$UserImpl',
+      json,
+      ($checkedConvert) {
+        final val = _$UserImpl(
+          id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+          name: $checkedConvert('name', (v) => v as String?),
+          email: $checkedConvert('email', (v) => v as String?),
+          password: $checkedConvert('password', (v) => v as String?),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>

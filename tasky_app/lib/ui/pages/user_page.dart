@@ -14,7 +14,7 @@ class UserPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user1 = ref.watch(fetchUserByIdUsecaseProvider(UserId('1')));
+    final user1 = ref.watch(fetchUserByIdUsecaseProvider(UserId('48')));
 
     ref.handleAsyncValue(
       createUserUsecaseProvider,
@@ -25,6 +25,7 @@ class UserPage extends ConsumerWidget {
         }
       },
     );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('User Page'),
@@ -47,7 +48,7 @@ class UserPage extends ConsumerWidget {
                 );
               },
               error: (Object error, StackTrace stackTrace) {
-                return const Text('エラー');
+                return Text((error as Failure).title ?? '');
               },
               loading: () {
                 return const Center(
@@ -60,7 +61,7 @@ class UserPage extends ConsumerWidget {
               onPressed: () async {
                 const user = User(
                   name: '金沢大樹',
-                  email: 'test1@gmail.com',
+                  email: 'test2@gmail.com',
                   password: 'password123',
                 );
 
